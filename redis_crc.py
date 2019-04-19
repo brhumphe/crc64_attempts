@@ -129,10 +129,15 @@ hash_table = [0x0000000000000000, 0x7ad870c830358979,
               ]
 
 
+def rshift_zero_padded(val, n):
+    """Zero-padded right shift"""
+    return (val % 0x1000000000000000) >> n
+
+
 def crc64(data):
     crc = 0
     for b in data:
-        crc = hash_table[(crc & 0b11111111) ^ b] ^ (crc >> 8)
+        crc = hash_table[(crc & 0b11111111) ^ b] ^ rshift_zero_padded(crc, 8)
     return crc
 
 

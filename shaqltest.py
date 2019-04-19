@@ -1,5 +1,6 @@
-import numpy as np
 
+
+# Rhett's table
 crc_table = [
         0x0000000000000000, 0x7ad870c830358979,
         0xf5b0e190606b12f2, 0x8f689158505e9b8b,
@@ -131,24 +132,35 @@ crc_table = [
         0x536fa08fdfd90e51, 0x29b7d047efec8728
 ]
 
-table = np.array(crc_table).astype(np.uint64)
+
+class CRC64(object):
+    
+    def __init__(self):
+        self.crc = 0x0000000000000000
+    
+    def append(self, buffer):
+        for c in buffer:
+            tab_index = ((self.crc & 0xff) ^ ord(c)) & 0xFF
+            self.crc = crc_table[tab_index] ^ ((self.crc >> 8) &
+                                               0xffffffffffffffff)
+    
+    def finish(self):
+        return self.crc ^ 0x0
+
+
+def crc64(buffer):
+    crc = CRC64()
+    crc.append(buffer)
+    
+    return crc.finish()
 
 
 if __name__ == '__main__':
-    
-    data = b'{NAMELIST}'
-    # data = b'123456789'
-    crc = np.uint64(0)
-    
-    for b in data:
-        # print(b)
-        # print("    crc:", np.binary_repr(crc, 64))
-        i = np.bitwise_xor(np.uint8(crc), np.uint8(b))
-        shifted = np.right_shift(crc, np.uint64(8))
-        # print("shifted:", np.binary_repr(shifted, 64))
-        crc = np.bitwise_xor(table[i], shifted)
-    
-    # crc = ~crc
-    
-    print(hex(crc))
-    print(hex(0x4137cc65bd97fd30))
+    print(hex(crc64('123456789')))
+    print(hex(0xe9c6d914c4b8d9ca))
+    hashed = crc64('{NAMELIST}')
+    actual = 0x4137cc65bd97fd30
+    # print(hashed)
+    print(hex(hashed))
+    print(hex(actual))
+    # assert crc64('{NAMELIST}') == actual

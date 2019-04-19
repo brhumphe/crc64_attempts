@@ -303,7 +303,7 @@ def crc64(buffer):
 
 
 if __name__ == '__main__':
-    hashed = crc64('{NAMELIST')
+    hashed = crc64('{NAMELIST}')
     actual = 0x4137cc65bd97fd30
     # print(hashed)
     print(hex(hashed))
