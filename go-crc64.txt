@@ -1,0 +1,32 @@
+// SOURCE: http://reveng.sourceforge.net/crc-catalogue/all.htm
+
+CRC-64/GO-ISO
+
+width=64 poly=0x000000000000001b init=0xffffffffffffffff refin=true refout=true xorout=0xffffffffffffffff check=0xb90956c775a41001 residue=0x5300000000000000 name="CRC-64/GO-ISO"
+
+- Class: confirmed
+- Go implementation reference contributed by "freetrader".
+- The Go Authors, The Go Programming Language, package crc64
+- II Implementation (using constant crc64.ISO)
+- The Go Authors (26 January 2017), The Go Programming Language, module src/hash/crc64/crc64.go
+- III Code: Go
+- The Go Authors (26 January 2017), The Go Programming Language, module src/hash/crc64/crc64_test.go
+-- IV 32 codewords (selection)
+--- 00000000​00000000
+--- 61000000​00000020​34
+--- 61620000​00000020​C436
+--- 61626300​00000020​C47637
+--- 61626364​00000020​C4766733
+--- 61626364​65000020​C47667D3​32
+--- 61626364​65660020​C47667D3​0230
+--- 61626364​65666720​C47667D3​02B031
+--- 61626364​65666768​C47667D3​02B0210E
+--- 61626364​65666768​697667D3​02B0216E​8B
+--- 61626364​65666768​696A67D3​02B0216E​5B7F
+--- 4E657061​6C207072​656D6965​7220776F​6E277420​72657369​676E2EA6​28EFD66A​865552
+--- 73697A65​3A202061​2E6F7574​3A202062​6164206D​61676963​D2ADCDDA​653C55F3
+--- 54686520​6D616A6F​72207072​6F626C65​6D206973​20776974​68207365​6E646D61​696C2E20​202D4D61​726B2048​6F72746F​6EB976A6​8740035E​9D
+--- 54686973​20697320​61207465​7374206F​66207468​6520656D​65726765​6E637920​62726F61​64636173​74207379​7374656D​2E613B50​6B00F1FC​E7
+- Unique effective solution of codeword set (unverified)
+- Created: 28 January 2017
+- Updated: 5 June 2018
